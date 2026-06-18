@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sricharan Nemalikonda — Freelance Designer & Marketer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0d;
+    --bg-soft:#141416;
+    --ink:#f2efe9;
+    --ink-dim:#8c887f;
+    --line:#262629;
+    --accent:#e8482b;       /* vermilion */
+    --accent-soft:#ff6a4d;
+    --radius:0px;
+  }
+  [data-theme="light"]{
+    --bg:#f2efe9;
+    --bg-soft:#e8e4db;
+    --ink:#0c0c0d;
+    --ink-dim:#6b6860;
+    --line:#d4cfc3;
+    --accent:#d83a1e;
+    --accent-soft:#e8482b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    transition:background .5s ease,color .5s ease;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    backdrop-filter:blur(12px);
+    background:color-mix(in srgb,var(--bg) 78%,transparent);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:'Space Grotesk';font-weight:600;letter-spacing:.04em;font-size:15px}
+  .brand b{color:var(--accent)}
+  .nav-right{display:flex;align-items:center;gap:28px}
+  .nav-links{display:flex;gap:26px;font-family:'Space Grotesk';font-size:13px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-dim)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.active{color:var(--accent)}
+  .theme-btn{
+    width:38px;height:38px;border:1px solid var(--line);background:transparent;
+    color:var(--ink);cursor:pointer;font-size:15px;display:grid;place-items:center;
+    transition:border-color .3s,transform .3s;
+  }
+  .theme-btn:hover{border-color:var(--accent);transform:rotate(20deg)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  header{padding:188px 0 90px;position:relative}
+  .eyebrow{
+    font-family:'Space Grotesk';font-size:13px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:30px;display:flex;align-items:center;gap:14px;
+  }
+  .eyebrow::before{content:"";width:42px;height:1px;background:var(--accent);display:inline-block}
+  .hero-title{
+    font-family:'Anton';font-weight:400;text-transform:uppercase;
+    font-size:clamp(56px,12vw,168px);line-height:.88;letter-spacing:-.01em;
+  }
+  .hero-title .out{
+    -webkit-text-stroke:1.5px var(--ink);color:transparent;
+  }
+  .hero-sub{
+    margin-top:34px;max-width:560px;font-size:18px;line-height:1.65;color:var(--ink-dim);
+  }
+  .hero-sub b{color:var(--ink);font-weight:500}
+  .hero-meta{
+    margin-top:48px;display:flex;flex-wrap:wrap;gap:14px;
+  }
+  .chip{
+    font-family:'Space Grotesk';font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+    border:1px solid var(--line);padding:9px 16px;color:var(--ink-dim);
+  }
+  .hero-marquee{
+    margin-top:74px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;white-space:nowrap;padding:18px 0;
+  }
+  .marquee-track{display:inline-block;animation:scroll 26s linear infinite}
+  .marquee-track span{
+    font-family:'Anton';text-transform:uppercase;font-size:30px;letter-spacing:.02em;
+    color:var(--ink-dim);margin:0 28px;
+  }
+  .marquee-track span.acc{color:var(--accent);-webkit-text-stroke:0}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:96px 0;border-top:1px solid var(--line);scroll-margin-top:78px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:54px}
+  .sec-num{font-family:'Space Grotesk';font-size:14px;color:var(--accent);letter-spacing:.1em}
+  .sec-title{font-family:'Anton';text-transform:uppercase;font-size:clamp(30px,5vw,54px);line-height:1;letter-spacing:-.01em}
+
+  /* ---------- DISCIPLINES (signature toggle) ---------- */
+  .disc-tabs{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);margin-bottom:48px}
+  .disc-tab{
+    flex:1;min-width:160px;background:transparent;border:none;border-right:1px solid var(--line);
+    color:var(--ink-dim);cursor:pointer;padding:22px 20px;text-align:left;
+    font-family:'Space Grotesk';transition:background .3s,color .3s;
+  }
+  .disc-tab:last-child{border-right:none}
+  .disc-tab .dt-no{font-size:12px;letter-spacing:.1em;display:block;margin-bottom:8px}
+  .disc-tab .dt-name{font-size:18px;font-weight:600;color:var(--ink);letter-spacing:.01em}
+  .disc-tab.active{background:var(--accent);color:#fff}
+  .disc-tab.active .dt-name,.disc-tab.active .dt-no{color:#fff}
+  .disc-panel{display:none;animation:fade .5s ease}
+  .disc-panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .disc-body{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:760px){.disc-body{grid-template-columns:1fr;gap:28px}}
+  .disc-lead{font-size:22px;line-height:1.55;font-weight:300}
+  .disc-lead b{font-weight:500;color:var(--accent)}
+  .disc-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .tool{font-family:'Space Grotesk';font-size:12.5px;border:1px solid var(--line);padding:8px 14px;color:var(--ink-dim);letter-spacing:.04em}
+  .disc-list{list-style:none}
+  .disc-list li{
+    display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--ink-dim);
+  }
+  .disc-list li::before{content:"→";color:var(--accent);flex-shrink:0}
+
+  /* ---------- WORK (numbered clients) ---------- */
+  .client{
+    display:grid;grid-template-columns:64px 1fr auto;gap:28px;align-items:start;
+    padding:34px 0;border-bottom:1px solid var(--line);
+    transition:padding-left .4s ease;cursor:default;position:relative;
+  }
+  .client:hover{padding-left:14px}
+  .client::after{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);
+    transform:scaleY(0);transform-origin:top;transition:transform .4s ease;
+  }
+  .client:hover::after{transform:scaleY(1)}
+  .c-no{font-family:'Space Grotesk';font-size:14px;color:var(--accent);padding-top:6px;letter-spacing:.06em}
+  .c-name{font-family:'Anton';text-transform:uppercase;font-size:clamp(26px,4vw,40px);line-height:1;letter-spacing:-.01em}
+  .c-desc{margin-top:12px;font-size:15px;color:var(--ink-dim);max-width:520px;line-height:1.6}
+  .c-tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+  .c-tag{font-family:'Space Grotesk';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--line);padding:5px 10px}
+  .c-link{
+    font-family:'Space Grotesk';font-size:13px;letter-spacing:.05em;color:var(--ink-dim);
+    align-self:center;white-space:nowrap;border:1px solid var(--line);padding:11px 18px;transition:all .3s;
+  }
+  .c-link:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  @media(max-width:760px){
+    .client{grid-template-columns:36px 1fr;gap:16px}
+    .c-link{grid-column:1/-1;margin-top:14px;justify-self:start}
+  }
+
+  /* ---------- STATS ---------- */
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(max-width:760px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--bg);padding:38px 24px}
+  .stat .num{font-family:'Anton';font-size:clamp(40px,6vw,64px);line-height:1;letter-spacing:-.01em}
+  .stat .num span{color:var(--accent)}
+  .stat .lab{margin-top:12px;font-family:'Space Grotesk';font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+
+  /* ---------- SHOWREEL ---------- */
+  .showreel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:20px}
+  @media(max-width:760px){.showreel-grid{grid-template-columns:1fr}}
+  .video-card{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--bg-soft);text-decoration:none;color:inherit;display:block}
+  .video-card:hover{border-color:var(--accent)}
+  .video-thumb{width:100%;height:0;padding-bottom:56.25%;position:relative;overflow:hidden;background:#000}
+  .video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .yt-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:background .3s}
+  .yt-card:hover .yt-overlay{background:rgba(0,0,0,.18)}
+  .yt-play{width:64px;height:44px;border-radius:12px;background:#f00;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+  .yt-play::after{content:"";display:block;margin-left:4px;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:15px solid #fff}
+  .yt-overlay span{color:#fff;font-family:'Space Grotesk';font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+  .video-meta{padding:20px;border-top:1px solid var(--line)}
+  .video-meta h4{font-family:'Anton';text-transform:uppercase;font-size:18px;letter-spacing:-.01em;margin-bottom:8px}
+  .video-meta p{font-family:'Space Grotesk';font-size:12.5px;color:var(--ink-dim);letter-spacing:.05em;text-transform:uppercase}
+  /* Instagram cards */
+  .ig-card{cursor:pointer}
+  .ig-thumb{width:100%;height:0;padding-bottom:56.25%;position:relative;overflow:hidden;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
+  .ig-thumb img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+  .ig-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:background .3s}
+  .ig-card:hover .ig-overlay{background:rgba(0,0,0,.25)}
+  .ig-overlay span{color:#fff;font-family:'Space Grotesk';font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+
+  .meta-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .ongoing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:1000px){.ongoing-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:760px){.ongoing-grid{grid-template-columns:1fr}}
+  .ongoing{
+    border:1px solid var(--line);padding:30px 26px;background:var(--bg-soft);
+    transition:border-color .35s,transform .35s;position:relative;overflow:hidden;
+  }
+  .ongoing:hover{border-color:var(--accent);transform:translateY(-5px)}
+  .og-status{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Space Grotesk';font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:22px;
+  }
+  .og-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent)}
+    70%{box-shadow:0 0 0 9px transparent}
+    100%{box-shadow:0 0 0 0 transparent}
+  }
+  .og-name{font-family:'Anton';text-transform:uppercase;font-size:clamp(24px,3vw,32px);line-height:1.02;letter-spacing:-.01em;margin-bottom:14px}
+  .og-desc{font-size:14.5px;color:var(--ink-dim);line-height:1.6;margin-bottom:18px}
+
+  /* ---------- CONTACT ---------- */
+  .contact{text-align:center;padding:120px 0}
+  .contact .big{font-family:'Anton';text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:.92;letter-spacing:-.01em}
+  .contact .big a{transition:color .3s}
+  .contact .big a:hover{color:var(--accent)}
+  .contact-row{margin-top:46px;display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+  .cbtn{
+    font-family:'Space Grotesk';font-size:14px;letter-spacing:.04em;padding:15px 28px;
+    border:1px solid var(--line);transition:all .3s;
+  }
+  .cbtn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .cbtn:hover{transform:translateY(-3px)}
+  .cbtn.solid:hover{background:var(--accent-soft)}
+  .cbtn.whatsapp{background:#25D366;border-color:#25D366;color:#fff;display:inline-flex;align-items:center}
+  .cbtn.whatsapp:hover{background:#1ebe5d;border-color:#1ebe5d}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--ink-dim);font-family:'Space Grotesk';font-size:12.5px;letter-spacing:.05em}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .marquee-track{animation:none}
+    *{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<nav>
+  <div class="brand">SRICHARAN<b>.</b>N</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#disciplines">Disciplines</a>
+      <a href="#showreel">Showreel</a>
+      <a href="#work">Work</a>
+      <a href="#current">Current</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme">☾</button>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Freelance · Hyderabad, India</div>
+    <h1 class="hero-title">
+      VIDEO<span style="color:var(--accent)">.</span><br>
+      <span class="out">MARKETING</span><br>
+      UI<span style="color:var(--accent)">/</span>UX<br>
+      <span style="font-size:clamp(32px,6vw,88px);color:var(--accent)">GROWTH HACKER</span>
+    </h1>
+    <p class="hero-sub">
+      I'm <b>Sricharan Nemalikonda</b> — Cybersecurity Analyst by day, creative entrepreneur by conviction. I freelance as a video editor, digital marketing strategist, UI/UX designer and growth hacker, helping startups turn raw ideas into brands people actually remember.
+    </p>
+    <div class="hero-meta">
+      <span class="chip">Cybersecurity Analyst</span>
+      <span class="chip">Entrepreneur</span>
+      <span class="chip">7+ Freelance Clients</span>
+      <span class="chip">2020 — Present</span>
+    </div>
+  </div>
+
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Video Editing</span><span class="acc">✦</span>
+      <span>Brand Strategy</span><span class="acc">✦</span>
+      <span>UI / UX</span><span class="acc">✦</span>
+      <span>Growth Hacking</span><span class="acc">✦</span>
+      <span>Ad Creatives</span><span class="acc">✦</span>
+      <span>SEO</span><span class="acc">✦</span>
+      <span>Social Media</span><span class="acc">✦</span>
+      <span>Video Editing</span><span class="acc">✦</span>
+      <span>Brand Strategy</span><span class="acc">✦</span>
+      <span>UI / UX</span><span class="acc">✦</span>
+      <span>Growth Hacking</span><span class="acc">✦</span>
+      <span>Ad Creatives</span><span class="acc">✦</span>
+      <span>SEO</span><span class="acc">✦</span>
+      <span>Social Media</span><span class="acc">✦</span>
+    </div>
+  </div>
+</header>
+
+<!-- DISCIPLINES -->
+<section id="disciplines">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">What I Do</h2>
+    </div>
+
+    <div class="disc-tabs reveal" role="tablist">
+      <button class="disc-tab active" data-disc="0"><span class="dt-no">D—01</span><span class="dt-name">Video Editing</span></button>
+      <button class="disc-tab" data-disc="1"><span class="dt-no">D—02</span><span class="dt-name">Digital Marketing</span></button>
+      <button class="disc-tab" data-disc="2"><span class="dt-no">D—03</span><span class="dt-name">UI / UX Design</span></button>
+      <button class="disc-tab" data-disc="3"><span class="dt-no">D—04</span><span class="dt-name">Growth Hacker</span></button>
+    </div>
+
+    <!-- Panel: Video -->
+    <div class="disc-panel active" data-panel="0">
+      <div class="disc-body">
+        <div>
+          <p class="disc-lead">Promotional and social content that <b>holds attention</b> in the first three seconds — cut for brands, founders and influencers.</p>
+          <div class="disc-tools">
+            <span class="tool">Adobe Premiere Pro</span>
+            <span class="tool">After Effects</span>
+            <span class="tool">Photoshop</span>
+            <span class="tool">AI-Assisted Editing</span>
+          </div>
+        </div>
+        <ul class="disc-list">
+          <li>Short-form social edits for Reels, Shorts and ad placements</li>
+          <li>Promotional brand films and product launch videos</li>
+          <li>Motion graphics, captions and on-brand visual systems</li>
+          <li>Influencer content packaged for multi-platform delivery</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Panel: Marketing -->
+    <div class="disc-panel" data-panel="1">
+      <div class="disc-body">
+        <div>
+          <p class="disc-lead">Full-funnel marketing that turns attention into growth — <b>powered by AI tooling</b> and measured by performance, not vanity metrics.</p>
+          <div class="disc-tools">
+            <span class="tool">GravityWrite</span>
+            <span class="tool">Jasper</span>
+            <span class="tool">Flick AI</span>
+            <span class="tool">AdCreative.AI</span>
+            <span class="tool">SEO / SEM</span>
+          </div>
+        </div>
+        <ul class="disc-list">
+          <li>Social media strategy and content calendars</li>
+          <li>Paid ad creatives and performance tracking</li>
+          <li>On-page &amp; content SEO — keyword research, meta optimisation</li>
+          <li>Branded email newsletters and lead generation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Panel: UI/UX -->
+    <div class="disc-panel" data-panel="2">
+      <div class="disc-body">
+        <div>
+          <p class="disc-lead">Interfaces and flows that feel <b>obvious to use</b> — visual design aligned with brand identity and real user behaviour.</p>
+          <div class="disc-tools">
+            <span class="tool">Figma</span>
+            <span class="tool">Adobe XD</span>
+            <span class="tool">WordPress</span>
+            <span class="tool">Canva</span>
+            <span class="tool">MidJourney</span>
+          </div>
+        </div>
+        <ul class="disc-list">
+          <li>App and web product interface design</li>
+          <li>User flows and experience mapping</li>
+          <li>Logo, visual identity and design systems</li>
+          <li>Landing pages that align design with conversion goals</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Panel: Growth Hacker -->
+    <div class="disc-panel" data-panel="3">
+      <div class="disc-body">
+        <div>
+          <p class="disc-lead">Turning traction into scale — <b>rapid experiments</b>, funnel optimisation and data-driven loops that compound growth without ballooning budgets.</p>
+          <div class="disc-tools">
+            <span class="tool">A/B Testing</span>
+            <span class="tool">Funnel Analytics</span>
+            <span class="tool">Flick AI</span>
+            <span class="tool">AdCreative.AI</span>
+            <span class="tool">Referral Loops</span>
+          </div>
+        </div>
+        <ul class="disc-list">
+          <li>Full-funnel conversion optimisation — top to bottom</li>
+          <li>Viral &amp; referral mechanics for early-stage products</li>
+          <li>Retention strategies: onboarding flows, re-engagement campaigns</li>
+          <li>Performance tracking — CAC, LTV, activation rate and beyond</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="showreel">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Video Work</h2>
+    </div>
+    <p class="reveal" style="color:var(--ink-dim);max-width:560px;margin:-30px 0 44px;font-size:16px;">
+      A selection of video edits, brand films and promotional work. Click to watch full.
+    </p>
+
+    <div class="showreel-grid">
+
+      <!-- YouTube 1 -->
+      <a class="video-card yt-card reveal" href="https://www.youtube.com/watch?v=fT2CfXAEG-U" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/fT2CfXAEG-U/hqdefault.jpg" alt="Video Edit 1">
+          <div class="yt-overlay"><span class="yt-play" aria-hidden="true"></span><span>Watch on YouTube</span></div>
+        </div>
+        <div class="video-meta">
+          <div class="meta-row">
+            <div><h4>Video Edit</h4><p>YouTube · Client Work</p></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- YouTube 2 -->
+      <a class="video-card yt-card reveal" href="https://www.youtube.com/watch?v=ehgAfCaxmZc" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/ehgAfCaxmZc/hqdefault.jpg" alt="Video Edit 2">
+          <div class="yt-overlay"><span class="yt-play" aria-hidden="true"></span><span>Watch on YouTube</span></div>
+        </div>
+        <div class="video-meta">
+          <div class="meta-row">
+            <div><h4>Video Edit</h4><p>YouTube · Client Work</p></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Instagram Reel 1 -->
+      <a class="video-card ig-card reveal" href="https://www.instagram.com/reel/DNk6S1DS0BR/?hl=en" target="_blank" rel="noopener">
+        <div class="ig-thumb">
+          <img src="https://i.ytimg.com/vi/fT2CfXAEG-U/maxresdefault.jpg" alt="Instagram Reel" onerror="this.style.display='none'">
+          <div class="ig-overlay">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Watch on Instagram</span>
+          </div>
+        </div>
+        <div class="video-meta">
+          <div class="meta-row">
+            <div><h4>Reel</h4><p>Instagram · Short-Form</p></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- YouTube 3 -->
+      <a class="video-card yt-card reveal" href="https://www.youtube.com/watch?v=hHTeYPzIqBs" target="_blank" rel="noopener">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/hHTeYPzIqBs/hqdefault.jpg" alt="Video Edit 3">
+          <div class="yt-overlay"><span class="yt-play" aria-hidden="true"></span><span>Watch on YouTube</span></div>
+        </div>
+        <div class="video-meta">
+          <div class="meta-row">
+            <div><h4>Video Edit</h4><p>YouTube · Client Work</p></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Instagram Post -->
+      <a class="video-card ig-card reveal" href="https://www.instagram.com/p/DDEHFhISOn3/?hl=en" target="_blank" rel="noopener">
+        <div class="ig-thumb">
+          <div class="ig-overlay" style="position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span style="color:white;font-family:'Space Grotesk';font-size:13px;letter-spacing:.05em">View on Instagram</span>
+          </div>
+        </div>
+        <div class="video-meta">
+          <div class="meta-row">
+            <div><h4>Post</h4><p>Instagram · Creative</p></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Selected Clients</h2>
+    </div>
+
+    <div class="client reveal">
+      <div class="c-no">/01</div>
+      <div>
+        <div class="c-name">StockAIVisor</div>
+        <p class="c-desc">Generative-AI fintech platform delivering stock-market analysis, predictive insights and portfolio tools. Built the full-funnel marketing and ad-creative strategy.</p>
+        <div class="c-tags"><span class="c-tag">Fintech</span><span class="c-tag">Marketing</span><span class="c-tag">Ad Creatives</span></div>
+      </div>
+      <a class="c-link" href="https://stockaivisor.com" target="_blank" rel="noopener">Visit ↗</a>
+    </div>
+
+    <div class="client reveal">
+      <div class="c-no">/02</div>
+      <div>
+        <div class="c-name">LeverBot</div>
+        <p class="c-desc">Generative-AI chatbot platform for customer service. Ran social campaigns, content and creative to position it for SaaS audiences.</p>
+        <div class="c-tags"><span class="c-tag">AI / SaaS</span><span class="c-tag">Social Strategy</span><span class="c-tag">Content</span></div>
+      </div>
+      <a class="c-link" href="https://leverbot.io" target="_blank" rel="noopener">Visit ↗</a>
+    </div>
+
+    <div class="client reveal">
+      <div class="c-no">/03</div>
+      <div>
+        <div class="c-name">NeetLogin</div>
+        <p class="c-desc">Edtech platform for NEET medical-entrance prep with live Botany &amp; Zoology classes. Handled brand content, video and UI touchpoints for students.</p>
+        <div class="c-tags"><span class="c-tag">Edtech</span><span class="c-tag">Video Editing</span><span class="c-tag">UI / UX</span></div>
+      </div>
+      <a class="c-link" href="https://neetlogin.com" target="_blank" rel="noopener">Visit ↗</a>
+    </div>
+
+    <div class="client reveal">
+      <div class="c-no">/04</div>
+      <div>
+        <div class="c-name">Deushire</div>
+        <p class="c-desc">Cheat-proof, proctored interview platform for modern hiring teams. Developed marketing narrative and creative to communicate trust and authenticity.</p>
+        <div class="c-tags"><span class="c-tag">HR Tech</span><span class="c-tag">Brand Strategy</span><span class="c-tag">Marketing</span></div>
+      </div>
+      <a class="c-link" href="https://www.deushire.com/" target="_blank" rel="noopener">Visit ↗</a>
+    </div>
+
+    <div class="client reveal">
+      <div class="c-no">/05</div>
+      <div>
+        <div class="c-name">Magic Tales</div>
+        <p class="c-desc">AI-powered learning app for kids — stories, tutoring and educational games. Crafted playful video content and interface visuals for a young audience.</p>
+        <div class="c-tags"><span class="c-tag">Consumer App</span><span class="c-tag">Video Editing</span><span class="c-tag">UI / UX</span></div>
+      </div>
+      <a class="c-link" href="https://www.instagram.com/the.magictales/?hl=en" target="_blank" rel="noopener">Visit ↗</a>
+    </div>
+
+    <div class="client reveal">
+      <div class="c-no">/06</div>
+      <div>
+        <div class="c-name">LeverageAI</div>
+        <p class="c-desc">AI tooling startup. Delivered social media campaigns, paid creatives and performance tracking across the marketing funnel.</p>
+        <div class="c-tags"><span class="c-tag">AI Tools</span><span class="c-tag">Paid Ads</span><span class="c-tag">Performance</span></div>
+      </div>
+      <a class="c-link" href="https://www.leveragai.com/" target="_blank" rel="noopener">Visit ↗</a>
+    </div>
+
+    <div class="client reveal">
+      <div class="c-no">/07</div>
+      <div>
+        <div class="c-name">Tarish Financials</div>
+        <p class="c-desc">Financial planning &amp; advisory firm offering personalized investment, retirement and insurance strategies. Built the brand presence, marketing content and web interface to make planning feel approachable.</p>
+        <div class="c-tags"><span class="c-tag">Fintech / Advisory</span><span class="c-tag">Marketing</span><span class="c-tag">UI / UX</span></div>
+      </div>
+      <a class="c-link" href="https://www.tarishfinancial.com/" target="_blank" rel="noopener">Visit ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT / ONGOING -->
+<section id="current">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">In Progress</h2>
+    </div>
+    <p class="reveal" style="color:var(--ink-dim);max-width:560px;margin:-30px 0 44px;font-size:16px;">
+      Projects currently on the desk — live work, building now.
+    </p>
+
+    <div class="ongoing-grid">
+      <div class="ongoing reveal">
+        <div class="og-status"><span class="og-dot"></span>Ongoing</div>
+        <div class="og-name">ClaryDx</div>
+        <p class="og-desc">Building the brand and digital presence for a diagnostics venture — marketing direction and interface design from the ground up.</p>
+        <div class="c-tags"><span class="c-tag">Healthtech</span><span class="c-tag">Branding</span><span class="c-tag">UI / UX</span></div>
+      </div>
+
+      <div class="ongoing reveal">
+        <div class="og-status"><span class="og-dot"></span>Ongoing</div>
+        <div class="og-name">Apparel Brand</div>
+        <p class="og-desc">Streetwear label in development — visual identity, campaign creative and social content built around a strong cultural point of view.</p>
+        <div class="c-tags"><span class="c-tag">Fashion</span><span class="c-tag">Brand Strategy</span><span class="c-tag">Creative</span></div>
+      </div>
+
+      <div class="ongoing reveal">
+        <div class="og-status"><span class="og-dot"></span>Ongoing</div>
+        <div class="og-name">Celebrity Video Editing</div>
+        <p class="og-desc">Editing short-form and promotional video content for a public-facing personality — fast turnarounds, platform-ready cuts.</p>
+        <div class="c-tags"><span class="c-tag">Video Editing</span><span class="c-tag">Short-Form</span><span class="c-tag">Social</span></div>
+      </div>
+
+      <div class="ongoing reveal">
+        <div class="og-status"><span class="og-dot"></span>Ongoing</div>
+        <div class="og-name">Amogha Milk</div>
+        <p class="og-desc">Building the brand identity and digital presence for a dairy brand — packaging direction, social content and marketing strategy from scratch.</p>
+        <div class="c-tags"><span class="c-tag">FMCG</span><span class="c-tag">Branding</span><span class="c-tag">Marketing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">By The Numbers</h2>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat"><div class="num">8<span>+</span></div><div class="lab">Brands & Clients</div></div>
+      <div class="stat"><div class="num">3</div><div class="lab">Live Projects</div></div>
+      <div class="stat"><div class="num">5<span>+</span></div><div class="lab">Years Freelancing</div></div>
+      <div class="stat"><div class="num">10<span>+</span></div><div class="lab">AI & Design Tools</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <div class="eyebrow reveal" style="justify-content:center">Let's build something</div>
+    <h2 class="big reveal">
+      GOT A<br><a href="mailto:nemalikondasricharan@gmail.com">PROJECT?</a>
+    </h2>
+    <div class="contact-row reveal">
+      <a class="cbtn solid" href="mailto:nemalikondasricharan@gmail.com">Email Me</a>
+      <a class="cbtn whatsapp" href="https://wa.me/918777515716" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:7px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Sricharan Nemalikonda · Video · Marketing · UI/UX · Made in Hyderabad
+</footer>
+
+<script>
+  // Theme toggle
+  const tb=document.getElementById('themeBtn');
+  tb.addEventListener('click',()=>{
+    const cur=document.body.getAttribute('data-theme');
+    const next=cur==='dark'?'light':'dark';
+    document.body.setAttribute('data-theme',next);
+    tb.textContent=next==='dark'?'☾':'☀';
+  });
+
+  // Discipline tabs
+  const tabs=document.querySelectorAll('.disc-tab');
+  const panels=document.querySelectorAll('.disc-panel');
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    const i=t.dataset.disc;
+    tabs.forEach(x=>x.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelector('.disc-panel[data-panel="'+i+'"]').classList.add('active');
+  }));
+
+  // Scroll reveal
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const navLinks=[...document.querySelectorAll('.nav-links a')];
+  navLinks.forEach(link=>{
+    link.addEventListener('click',e=>{
+      const id=link.getAttribute('href');
+      const target=document.querySelector(id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+        history.replaceState(null,'',id);
+      }
+    });
+  });
+
+  const spyTargets=navLinks.map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  const spy=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  spyTargets.forEach(t=>spy.observe(t));
+</script>
+</body>
+</html>
